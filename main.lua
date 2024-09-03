@@ -39,7 +39,7 @@ function love.update(dt)
     isEngineOn = true
     local angleRadian = math.rad(lander.angle)
     local force_x = math.cos(angleRadian) * (lander.speed_x * dt)
-    local force_y = math.sin(angleRadian) * (lander.speed_x * dt)
+    local force_y = math.sin(angleRadian) * (lander.speed_y * dt)
     
     lander.vx = lander.vx + force_x
     lander.vy = lander.vy + force_y
