@@ -14,6 +14,8 @@ lander.img = love.graphics.newImage("assets/ship.png")
 lander.engineImg = love.graphics.newImage("assets/engine.png")
 lander.isEngineOn = false
 
+local stars = require("stars")
+
 local gravity = 0.6
 
 local isGameOver = false
@@ -22,11 +24,15 @@ function love.load()
   -- Positionne le vaisseau au centre de la fenêtre
   lander.x = love.graphics.getWidth()/2
   lander.y = love.graphics.getHeight()/2
+
+  stars.init()
 end
 
 
 -- TODO : relancer une partie avec états par défaut (reset la position, angle et vélocité du vaisseau)
 function love.update(dt)
+  stars.update(dt)
+
   -- On applique le coefficient de gravité à l'inertie du vaisseau
   lander.vy = lander.vy + (gravity * dt)
   
@@ -64,6 +70,8 @@ function love.update(dt)
 end
 
 function love.draw()
+  stars.draw()
+
   if isGameOver then
     local gameOverMessage = "Vous avez perdu ! Recommencer ?"
     local gameOverMessageWidth = love.graphics.getFont():getWidth(gameOverMessage)
